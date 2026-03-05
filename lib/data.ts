@@ -18,8 +18,8 @@ let assignments: Assignment[] = [
   },
   {
     id: 2,
-    title: "Lab 2 - Swagger",
-    description: "Add Swagger documentation",
+    title: "Assignment 2 - Calculus homework",
+    description: "Need to submit before mid exam",
     createdAt: new Date().toISOString(),
     dueDate: "2025-03-17",
     status: "submitted",
