@@ -27,10 +27,10 @@ Open http://localhost:3000/docs for API documentation
 | /api/assignments | POST | Success | Send {title, description, status} | 201 + new assignment object | 201 + new assignment object | PASS |
 | /api/assignments | POST | Error | Send body without title | 400 + {error: "Title is required"} | 400 + {error: "Title is required"} | PASS |
 | /api/assignments/:id | GET | Success | id = 1 | 200 + assignment detail | 200 + assignment detail | PASS |
-| /api/assignments/:id | GET | Error | id = 9999 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
+| /api/assignments/:id | GET | Error | id = 65 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
 | /api/assignments/:id | PUT | Success | id = 1, send {status: "done"} | 200 + updated assignment | 200 + updated assignment | PASS |
-| /api/assignments/:id | PUT | Error | id = 9999 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
+| /api/assignments/:id | PUT | Error | id = 50 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
 | /api/assignments/:id | DELETE | Success | id = 2 | 200 + {message: "Deleted successfully"} | 200 + {message: "Deleted successfully"} | PASS |
-| /api/assignments/:id | DELETE | Error | id = 9999 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
+| /api/assignments/:id | DELETE | Error | id = 25 | 404 + {error: "Assignment not found"} | 404 + {error: "Assignment not found"} | PASS |
 ```
 ```
