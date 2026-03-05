@@ -24,11 +24,12 @@ export async function GET(request: NextRequest) {
               "application/json": {
                 schema: {
                   type: "object",
-                  required: ["title"],
+                  required: ["title", "dueDate"],
                   properties: {
-                    title: { type: "string" },
-                    description: { type: "string" },
-                    status: { type: "string" },
+                    title: { type: "string", example: "Lab 3 - Testing" },
+                    description: { type: "string", example: "Test all endpoints" },
+                    dueDate: { type: "string", format: "date", example: "2025-03-20" },
+                    status: { type: "string", enum: ["on process", "complete", "submitted"], example: "on process" },
                   },
                 },
               },
@@ -36,7 +37,7 @@ export async function GET(request: NextRequest) {
           },
           responses: {
             "201": { description: "Assignment created" },
-            "400": { description: "Missing required field" },
+            "400": { description: "Missing required field or invalid status" },
           },
         },
       },
@@ -55,12 +56,21 @@ export async function GET(request: NextRequest) {
           requestBody: {
             content: {
               "application/json": {
-                schema: { type: "object" },
+                schema: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string" },
+                    description: { type: "string" },
+                    dueDate: { type: "string", format: "date", example: "2025-03-20" },
+                    status: { type: "string", enum: ["on process", "complete", "submitted"] },
+                  },
+                },
               },
             },
           },
           responses: {
             "200": { description: "Updated assignment" },
+            "400": { description: "Invalid status" },
             "404": { description: "Not found" },
           },
         },

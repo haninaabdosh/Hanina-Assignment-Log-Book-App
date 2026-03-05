@@ -19,7 +19,13 @@ export async function PUT(
   const index = assignments.findIndex(a => a.id === Number(id));
   if (index === -1) return NextResponse.json({ error: "Assignment not found" }, { status: 404 });
   const body = await req.json();
-  assignments[index] = { ...assignments[index], ...body };
+
+  const validStatuses = ["on process", "complete", "submitted"];
+  if (body.status && !validStatuses.includes(body.status)) {
+    return NextResponse.json({ error: "Status must be: on process, complete, or submitted" }, { status: 400 });
+  }
+
+  assignments[index] = { ...assignments[index], ...body, createdAt: assignments[index].createdAt };
   return NextResponse.json(assignments[index], { status: 200 });
 }
 
